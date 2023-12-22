@@ -29,8 +29,6 @@ const initialState: Settings = {
 const createSettingsStore = () => {
   const {set, update, subscribe} = writable(initialState)
 
-  subscribe(console.log)
-
   return {
     set,
     subscribe,

@@ -15,21 +15,21 @@
 		<div class="flex-1 flex flex-col items-center justify-center p-4 bg-neutral-800 rounded-xl">
 			<h4 class="text-lg">Ставка</h4>
 			<h5 class="text-xl font-bold flex items-center justify-center gap-2 font-mono">
-				{$bets[currentBet].bet}
+				{$bets[currentBet]?.bet ?? -1}
 				<MajesticCoin class="w-4 h-4 translate-y-0.25" />
 			</h5>
 		</div>
 		<div class="flex-1 flex flex-col items-center justify-center p-4 bg-neutral-800 rounded-xl">
 			<h4 class="text-lg">Проиграно</h4>
 			<h5 class="text-xl font-bold flex items-center justify-center gap-2 font-mono">
-				{$bets[currentBet].cost}
+				{$bets[currentBet]?.cost ?? -1}
 				<MajesticCoin class="w-4 h-4 translate-y-0.25" />
 			</h5>
 		</div>
 		<div class="flex-1 flex flex-col items-center justify-center p-4 bg-neutral-800 rounded-xl">
 			<h4 class="text-lg text-center">Потенциальный плюс</h4>
 			<h5 class="text-xl font-bold flex items-center justify-center gap-2 font-mono">
-				{$bets[currentBet].potentialPlus}
+				{$bets[currentBet]?.potentialPlus ?? -1}
 				<MajesticCoin class="w-4 h-4 translate-y-0.25" />
 			</h5>
 		</div>

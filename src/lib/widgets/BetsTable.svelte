@@ -10,7 +10,7 @@
 				<th class="px-4 py-2 text-right border-r border-neutral-700">#</th>
 				<th class="px-4 py-2 text-right border-r border-neutral-700">Ставка</th>
 				<th class="px-4 py-2 text-right border-r border-neutral-700">Затраты</th>
-				<th class="px-4 py-2 text-right border-r border-neutral-700">Потенцильный плюс</th>
+				<th class="px-4 py-2 text-right">Потенцильный плюс</th>
 			</tr>
 		</thead>
 		<tbody>

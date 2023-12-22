@@ -5,25 +5,24 @@ import { z } from "zod"
 export const StartBetSizeSchema = z.number().min(10).step(1)
 export const ColorToBetSchema = z.enum(["white", "red", "green", "gold"])
 export const BetMultiplySizeSchema = z.number().min(1).step(0.01)
+export const BalanceBeforeBetSchema = z.number().min(10).step(1)
 
 export const SettingsSchema = z.object({
   startBetSize: StartBetSizeSchema,
   colorToBet: ColorToBetSchema,
-  betMultiplySize: BetMultiplySizeSchema
+  betMultiplySize: BetMultiplySizeSchema,
+  balanceBeforeBet: BalanceBeforeBetSchema,
 })
 
 export type Settings = z.infer<typeof SettingsSchema>
 
-export type SettingsErrors = {
-  startBetSize: string | null,
-  colorToBet: string | null,
-  betMultiplySize: string | null
-}
+export type SettingsErrors = Record<keyof Settings, string | null>
 
 const initialState: Settings = {
   startBetSize: 10,
   colorToBet: "green",
-  betMultiplySize: 2
+  betMultiplySize: 2,
+  balanceBeforeBet: 10,
 }
 
 const createSettingsStore = () => {
@@ -32,14 +31,8 @@ const createSettingsStore = () => {
   return {
     set,
     subscribe,
-    setStartBetSize(startBetSize: number) {
-      update(v => ({...v, startBetSize}))
-    },
     setColorToBet(colorToBet: Color) {
       update(v => ({...v, colorToBet}))
-    },
-    setBetMultiplycSize(betMultiplySize: number) {
-      update(v => ({...v, betMultiplySize}))
     }
   }
 }
@@ -51,6 +44,7 @@ export const settingsErrors = derived(settings, ($settings) => {
     startBetSize: null,
     colorToBet: null,
     betMultiplySize: null,
+    balanceBeforeBet: null,
   }
 
   if (result.success) return errors
@@ -66,6 +60,10 @@ export const settingsErrors = derived(settings, ($settings) => {
   const betMultiplySizeError = getZodErrorMessage(result.error.issues, ["betMultiplySize"])
   if (betMultiplySizeError) {
     errors.betMultiplySize = betMultiplySizeError.message
+  }
+  const balanceBeforeBetError = getZodErrorMessage(result.error.issues, ["balanceBeforeBet"])
+  if (balanceBeforeBetError) {
+    errors.balanceBeforeBet = balanceBeforeBetError.message
   }
 
   return errors

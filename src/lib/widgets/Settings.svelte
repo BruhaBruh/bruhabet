@@ -75,4 +75,17 @@
 			error={$settingsErrors.betMultiplySize !== null}
 		/>
 	</TextField>
+	<TextField
+		forHtml="balance-before-bet"
+		label="Баланс перед ставкой"
+		error={$settingsErrors.balanceBeforeBet}
+	>
+		<Input
+			id="balance-before-bet"
+			name="balance-before-bet"
+			inputmode="numeric"
+			bind:value={$settings.balanceBeforeBet}
+			error={$settingsErrors.balanceBeforeBet !== null}
+		/>
+	</TextField>
 </section>

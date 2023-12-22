@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { bets } from '$lib/store/bets';
+	import { settings } from '$lib/store/settings';
 </script>
 
 <section class="flex flex-col gap-4">
@@ -14,7 +15,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each $bets as betInfo, index}
+			{#each $bets.filter((b) => b.cost <= $settings.balanceBeforeBet) as betInfo, index}
 				{@const isLast = $bets.length - 1 === index}
 				<tr class={isLast ? undefined : 'border-b border-neutral-700'}>
 					<td class="px-4 py-2 text-right border-r border-neutral-700">{index + 1}</td>

@@ -29,7 +29,6 @@ export const bets = derived([settings, settingsErrors], ($values) => {
       ? previousInfo.bet 
       : previousInfo.bet * settings.betMultiplySize);
     info.cost = infos.reduce((p, c) => p + c.bet, 0) + info.bet;
-    if (info.cost > settings.balanceBeforeBet) return infos
     info.potentialPlus = Math.floor(info.bet * multiplyOfColor-info.cost)
     infos.push({...info})
   }

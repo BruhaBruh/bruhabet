@@ -22,7 +22,7 @@
 	};
 </script>
 
-<label for={id} class="select-none">
+<label for={id} class="select-none flex-1">
 	<input
 		{id}
 		{name}
@@ -36,7 +36,7 @@
 	<div
 		class="peer-checked/color-radio:ring-4 ring-0 ring-opacity-25 {ringByColor[
 			color
-		]} cursor-pointer animated h-24 w-24 rounded-lg {gradientByColor[
+		]} cursor-pointer animated h-24 rounded-lg {gradientByColor[
 			color
 		]} text-3xl font-bold font-mono flex items-center justify-center"
 	>

@@ -1,6 +1,6 @@
 import { settings, settingsErrors } from "$lib/store/settings";
 import type { Color } from "$lib/types/color";
-import { derived, readable } from "svelte/store";
+import { derived } from "svelte/store";
 
 const getMultipyOfColor = (color: Color) => {
   switch (color) {

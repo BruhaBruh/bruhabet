@@ -1,6 +1,6 @@
 import { settings, settingsErrors } from "$lib/store/settings";
 import type { Color } from "$lib/types/color";
-import { derived } from "svelte/store";
+import { derived, readable } from "svelte/store";
 
 const getMultipyOfColor = (color: Color) => {
   switch (color) {
@@ -34,4 +34,10 @@ export const bets = derived([settings, settingsErrors], ($values) => {
   }
 
   return infos
+})
+
+export const betsForBalance = derived([bets, settings], ($values) => {
+  const bets = $values[0]
+  const settings = $values[1]
+  return bets.filter((b) => b.cost <= settings.balanceBeforeBet)
 })

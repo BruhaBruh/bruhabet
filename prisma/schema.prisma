@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Server {
+  id   Int    @id
+  name String
+
+  bets Bet[]
+}
+
+model Bet {
+  id       Int    @id @default(autoincrement())
+  betId    Int // id in majestic rp
+  result   String // white red green gold
+  serverId Int
+
+  server Server @relation(fields: [serverId], references: [id])
+}

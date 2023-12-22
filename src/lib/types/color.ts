@@ -1,0 +1,1 @@
+export type Color = "white" | "red" | "green" | "gold"

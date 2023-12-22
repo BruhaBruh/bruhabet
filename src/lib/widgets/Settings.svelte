@@ -1,0 +1,78 @@
+<script lang="ts">
+	import ColorRadio from '$lib/components/ColorRadio.svelte';
+	import Input from '$lib/components/Input.svelte';
+	import TextField from '$lib/components/TextField.svelte';
+	import { settings, settingsErrors } from '$lib/store/settings';
+	import type { Color } from '$lib/types/color';
+
+	const handleChangeColorToBet = (e: Event) => {
+		const input = e.currentTarget as HTMLInputElement;
+		settings.setColorToBet(input.value as Color);
+	};
+</script>
+
+<section class="flex flex-col gap-4">
+	<h2 class="text-3xl font-bold">Настройки</h2>
+	<TextField
+		forHtml="start-bet-size"
+		label="Начальная сумма ставки"
+		error={$settingsErrors.startBetSize}
+	>
+		<Input
+			id="start-bet-size"
+			name="start-bet-size"
+			inputmode="numeric"
+			bind:value={$settings.startBetSize}
+			error={$settingsErrors.startBetSize !== null}
+		/>
+	</TextField>
+	<TextField label="Цвет для ставки">
+		<div class="flex gap-2">
+			<ColorRadio
+				checked={$settings.colorToBet === 'white'}
+				label="X2"
+				id="color-to-bet-white"
+				name="color-to-bet"
+				color="white"
+				on:change={handleChangeColorToBet}
+			/>
+			<ColorRadio
+				checked={$settings.colorToBet === 'red'}
+				label="X3"
+				id="color-to-bet-red"
+				name="color-to-bet"
+				color="red"
+				on:change={handleChangeColorToBet}
+			/>
+			<ColorRadio
+				checked={$settings.colorToBet === 'green'}
+				label="X5"
+				id="color-to-bet-green"
+				name="color-to-bet"
+				color="green"
+				on:change={handleChangeColorToBet}
+			/>
+			<ColorRadio
+				checked={$settings.colorToBet === 'gold'}
+				label="X10"
+				id="color-to-bet-gold"
+				name="color-to-bet"
+				color="gold"
+				on:change={handleChangeColorToBet}
+			/>
+		</div>
+	</TextField>
+	<TextField
+		forHtml="bet-multiply-size"
+		label="Коэффициент увеличения ставки"
+		error={$settingsErrors.betMultiplySize}
+	>
+		<Input
+			id="bet-multiply-size"
+			name="bet-multiply-size"
+			inputmode="numeric"
+			bind:value={$settings.betMultiplySize}
+			error={$settingsErrors.betMultiplySize !== null}
+		/>
+	</TextField>
+</section>

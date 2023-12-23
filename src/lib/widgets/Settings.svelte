@@ -7,8 +7,6 @@
 	import type { Color } from '$lib/types/color';
 	import type { Server } from '@prisma/client';
 
-	export let servers: Server[] = [];
-
 	const handleChangeColorToBet = (e: Event) => {
 		const input = e.currentTarget as HTMLInputElement;
 		settings.setColorToBet(input.value as Color);
@@ -17,9 +15,6 @@
 
 <section class="flex flex-col gap-4">
 	<h2 class="text-3xl font-bold">Настройки</h2>
-	<TextField label="Выбор сервера" error={$settingsErrors.selectedServer}>
-		<ServerSelect {servers} bind:selectedServer={$settings.selectedServer} />
-	</TextField>
 	<TextField
 		forHtml="start-bet-size"
 		label="Начальная сумма ставки"

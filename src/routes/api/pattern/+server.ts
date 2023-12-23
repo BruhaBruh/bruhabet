@@ -2,30 +2,41 @@ import { prisma } from "$lib/server/db.js";
 import type { Color } from "$lib/types/color";
 import type { Pattern } from "$lib/types/pattern";
 import { json } from "@sveltejs/kit";
+import { z } from "zod";
 
 const cache: Record<number, {history: Color[], expiredAt: number}> = {}
 const cacheTTL = 30 * 1000 // 30 seconds
 
+const Schema = z.object({
+  serverId: z.number().positive().step(1),
+  pattern: z.array(z.object({
+    color: z.enum(["WHITE", "RED", "GREEN", "GOLD"]),
+    invert: z.boolean()
+  }))
+})
+
 /** @type {import('./$types').RequestHandler} */
-export async function POST() {
-  const serverId = 9
-  const pattern: Pattern[] = [
-    {color: "GREEN", invert: false},
-    {color: "GREEN", invert: false},
-    {color: "GREEN", invert: false},
-  ]
+export async function POST({request}) {
+  const data = await request.json()
+  const result = await Schema.safeParseAsync(data)
+  if (!result.success) {
+    return new Response(null, {status: 403})
+  }
+  const serverId = result.data.serverId
+  const pattern: Pattern[] = result.data.pattern
+
   if (pattern.length === 0) {
     return json({message: "Длина шаблона должна быть минимум из 1 элемента"}, {status: 400})
   }
-  if (pattern.length > 5) {
-    return json({message: "Длина шаблона должна быть максимум из 5 элементов"}, {status: 400})
+  if (pattern.length > 20) {
+    return json({message: "Длина шаблона должна быть максимум из 20 элементов"}, {status: 400})
   }
 
   const history = await getBetHistoryCacheFirst(serverId)
 
   const percent = getPercentByPattern(history, pattern)
 
-  return json({ percent })
+  return json({ percent, amountOfBets: history.length })
 }
 
 const getPercentByPattern = (history: Color[], pattern: Pattern[]) => {

@@ -10,7 +10,7 @@
 	export let servers: Server[] = [];
 
 	let password: string = '';
-	let selectedServer: number = 0;
+	let selectedServer: number = 9;
 	let isLoading: boolean = false;
 	let isSuccess: boolean = false;
 
@@ -76,15 +76,15 @@
 		form.betId = form.betId + 1;
 		setTimeout(() => {
 			isSuccess = false;
-		}, 2000);
+		}, 1000);
 	};
 </script>
 
 <section class="flex flex-col gap-4">
 	<h2 class="text-3xl font-bold">Админ Панель</h2>
-	<TextField label="Выбор сервера">
+	<!-- <TextField label="Выбор сервера">
 		<ServerSelect {servers} bind:selectedServer />
-	</TextField>
+	</TextField> -->
 	<TextField forHtml="password" label="Пароль">
 		<Input id="password" type="password" name="password" bind:value={password} />
 	</TextField>

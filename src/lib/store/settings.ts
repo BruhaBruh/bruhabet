@@ -7,14 +7,12 @@ export const StartBetSizeSchema = z.number().min(10).step(1)
 export const ColorToBetSchema = z.enum(["WHITE", "RED", "GREEN", "GOLD"])
 export const BetMultiplySizeSchema = z.number().min(1).step(0.01)
 export const BalanceBeforeBetSchema = z.number().min(10).step(1)
-export const SelectedServerSchema = z.number().step(1).positive()
 
 export const SettingsSchema = z.object({
   startBetSize: StartBetSizeSchema,
   colorToBet: ColorToBetSchema,
   betMultiplySize: BetMultiplySizeSchema,
   balanceBeforeBet: BalanceBeforeBetSchema,
-  selectedServer: SelectedServerSchema
 })
 
 export type Settings = z.infer<typeof SettingsSchema>
@@ -26,7 +24,6 @@ const initialState: Settings = {
   colorToBet: "GREEN",
   betMultiplySize: 2,
   balanceBeforeBet: 10,
-  selectedServer: 9
 }
 
 const createSettingsStore = () => {
@@ -49,7 +46,6 @@ export const settingsErrors = derived(settings, ($settings) => {
     colorToBet: null,
     betMultiplySize: null,
     balanceBeforeBet: null,
-    selectedServer: null
   }
 
   if (result.success) return errors
@@ -69,10 +65,6 @@ export const settingsErrors = derived(settings, ($settings) => {
   const balanceBeforeBetError = getZodErrorMessage(result.error.issues, ["balanceBeforeBet"])
   if (balanceBeforeBetError) {
     errors.balanceBeforeBet = balanceBeforeBetError.message
-  }
-  const selectedServerError = getZodErrorMessage(result.error.issues, ["selectedServer"])
-  if (selectedServerError) {
-    errors.selectedServer = selectedServerError.message
   }
 
   return errors

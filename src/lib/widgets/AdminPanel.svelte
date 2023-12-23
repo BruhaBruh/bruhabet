@@ -7,8 +7,6 @@
 	import type { Server } from '@prisma/client';
 	import { z } from 'zod';
 
-	export let servers: Server[] = [];
-
 	let password: string = '';
 	let selectedServer: number = 9;
 	let isLoading: boolean = false;

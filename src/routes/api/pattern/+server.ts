@@ -34,6 +34,10 @@ export async function POST({request}) {
 
   const history = await getBetHistoryCacheFirst(serverId)
 
+  if (history.length === 0) {
+    return json({ percent: 0, amountOfBets: 0 })
+  }
+
   const percent = getPercentByPattern(history, pattern)
 
   return json({ percent, amountOfBets: history.length })

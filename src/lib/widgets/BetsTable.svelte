@@ -14,7 +14,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each $betsForBalance as betInfo, index}
+			{#each $betsForBalance as betInfo, index (index)}
 				{@const isLast = $betsForBalance.length - 1 === index}
 				<tr class={isLast ? undefined : 'border-b border-neutral-700'}>
 					<td class="px-4 py-2 text-right border-r border-neutral-700">{index + 1}</td>

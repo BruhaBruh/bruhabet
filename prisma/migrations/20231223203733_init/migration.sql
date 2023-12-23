@@ -19,5 +19,8 @@ CREATE TABLE "Bet" (
     CONSTRAINT "Bet_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateIndex
+CREATE INDEX "Bet_betId_serverId_idx" ON "Bet"("betId" ASC, "serverId");
+
 -- AddForeignKey
 ALTER TABLE "Bet" ADD CONSTRAINT "Bet_serverId_fkey" FOREIGN KEY ("serverId") REFERENCES "Server"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

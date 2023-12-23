@@ -8,17 +8,17 @@
 	export let label: string = '';
 
 	const gradientByColor: Record<Color, string> = {
-		white: 'gradient-white',
-		red: 'gradient-red',
-		green: 'gradient-green',
-		gold: 'gradient-gold',
+		WHITE: 'gradient-white',
+		RED: 'gradient-red',
+		GREEN: 'gradient-green',
+		GOLD: 'gradient-gold',
 	};
 
 	const ringByColor: Record<Color, string> = {
-		white: 'ring-neutral-100',
-		red: 'ring-red-500',
-		green: 'ring-green-500',
-		gold: 'ring-yellow-500',
+		WHITE: 'ring-neutral-100',
+		RED: 'ring-red-500',
+		GREEN: 'ring-green-500',
+		GOLD: 'ring-yellow-500',
 	};
 </script>
 

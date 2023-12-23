@@ -1,1 +1,3 @@
-export type Color = "white" | "red" | "green" | "gold"
+import type { $Enums } from "@prisma/client";
+
+export type Color = $Enums.Color

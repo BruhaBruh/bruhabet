@@ -4,10 +4,10 @@ import { derived } from "svelte/store";
 
 const getMultipyOfColor = (color: Color) => {
   switch (color) {
-    case "white": return 2
-    case "red": return 3
-    case "green": return 5
-    case "gold": return 10
+    case "WHITE": return 2
+    case "RED": return 3
+    case "GREEN": return 5
+    case "GOLD": return 10
   }
 }
 

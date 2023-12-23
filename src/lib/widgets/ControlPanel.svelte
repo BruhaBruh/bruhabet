@@ -77,7 +77,7 @@
 			Проиграл
 		</button>
 		<button
-			class="flex-1 gradient-white disabled:gradient-gray text-lg font-bold rounded-xl p-4 ring-0 ring-opacity-25 ring-red-500 focus:ring-4"
+			class="flex-1 gradient-white disabled:gradient-gray text-lg font-bold rounded-xl p-4 ring-0 ring-opacity-25 ring-neutral-100 focus:ring-4"
 			on:click={handleResetClick}
 		>
 			Сбросить

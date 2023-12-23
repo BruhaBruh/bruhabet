@@ -25,6 +25,8 @@ model Bet {
   serverId Int
 
   server Server @relation(fields: [serverId], references: [id])
+
+  @@index([betId(sort: Asc), serverId])
 }
 
 enum Color {

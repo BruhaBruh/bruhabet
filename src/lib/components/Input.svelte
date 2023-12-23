@@ -17,7 +17,6 @@
 
 <input
 	{...$$restProps}
-	placeholder="Placeholder..."
 	class="{error
 		? 'outline outline-red-500 '
 		: ''}appearance-none p-4 bg-neutral-800 border border-neutral-700 rounded-xl animated outline-none ring-0 ring-opacity-25 ring-neutral-500 focus:ring-4"

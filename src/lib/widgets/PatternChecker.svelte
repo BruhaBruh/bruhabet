@@ -69,7 +69,7 @@
 
 <section class="flex flex-col gap-4">
 	<h2 class="text-3xl font-bold">Проверка паттерна</h2>
-	<p class="text-xl text-red-500">В процессе разработке и добавлении ставок</p>
+	<p class="text-xl text-red-500">В процессе разработки и добавлении ставок</p>
 	<!-- <TextField label="Выбор сервера">
 		<ServerSelect {servers} bind:selectedServer />
 	</TextField> -->
